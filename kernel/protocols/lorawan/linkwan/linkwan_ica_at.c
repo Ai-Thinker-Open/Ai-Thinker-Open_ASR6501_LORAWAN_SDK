@@ -1813,7 +1813,7 @@ static int at_gpiocontrol_func(int opt, int argc, char *argv[]){
             break;
         case DESC_CMD:  //使用说明(AT=?)
             ret = LWAN_SUCCESS;
-            snprintf((char *)atcmd, ATCMD_SIZE, "AT+%s=[R/W][PIN]<,LEVE>\r\n  PIN:1:P2_3 2:P4_1 3:P4_2\r\n  LEVE:0/1\r\neg:\r\n  AT%s=W,1,1OK\r\n  AT%s=R,1\r\nOK\r\n", LORA_AT_GPIOCTOL,LORA_AT_GPIOCTOL,LORA_AT_GPIOCTOL);
+            snprintf((char *)atcmd, ATCMD_SIZE, "AT+%s=[R/W][PIN]<,LEVE>\r\n  PIN:1:P0_0 2:P0_1 3:P2_3\r\n  LEVE:0/1\r\neg:\r\n  AT%s=W,1,1OK\r\n  AT%s=R,1\r\nOK\r\n", LORA_AT_GPIOCTOL,LORA_AT_GPIOCTOL,LORA_AT_GPIOCTOL);
             break;
         case SET_CMD:   //设置
             if(argc < 2){
@@ -1831,7 +1831,29 @@ static int at_gpiocontrol_func(int opt, int argc, char *argv[]){
             }
 
             switch(pinIndex){
-                case 1: //P2_3
+                case 1: //P0_0
+                    if('W'==chr_Mod){
+                        P0_0_SetDriveMode(P0_0_DM_STRONG);  //强驱动用于输出
+                        P0_0_Write(pinLeve);
+                    }else{
+                        P0_0_SetDriveMode(P0_0_DM_DIG_HIZ); //高阻态，用于输入模式
+                        pinLeve=P0_0_Read();
+                    }
+                    memcpy(str_pinName,"P0_0",strlen("P0_0"));
+                    ret = LWAN_SUCCESS;
+                    break;
+                case 2: //P0_1
+                    if('W'==chr_Mod){
+                        P0_1_SetDriveMode(P0_1_DM_STRONG);  //强驱动用于输出
+                        P0_1_Write(pinLeve);
+                    }else{
+                        P0_1_SetDriveMode(P0_1_DM_DIG_HIZ); //高阻态，用于输入模式
+                        pinLeve=P0_1_Read();
+                    }
+                    memcpy(str_pinName,"P0_1",strlen("P0_1"));
+                    ret = LWAN_SUCCESS;
+                    break;
+                case 3: //P2_3
                     if('W'==chr_Mod){
                         P2_3_SetDriveMode(P2_3_DM_STRONG);  //强驱动用于输出
                         P2_3_Write(pinLeve);
@@ -1840,28 +1862,6 @@ static int at_gpiocontrol_func(int opt, int argc, char *argv[]){
                         pinLeve=P2_3_Read();
                     }
                     memcpy(str_pinName,"P2_3",strlen("P2_3"));
-                    ret = LWAN_SUCCESS;
-                    break;
-                case 2: //P4_1
-                    if('W'==chr_Mod){
-                        P4_1_SetDriveMode(P4_1_DM_STRONG);  //强驱动用于输出
-                        P4_1_Write(pinLeve);
-                    }else{
-                        P4_1_SetDriveMode(P4_1_DM_DIG_HIZ); //高阻态，用于输入模式
-                        pinLeve=P4_1_Read();
-                    }
-                    memcpy(str_pinName,"P4_1",strlen("P4_1"));
-                    ret = LWAN_SUCCESS;
-                    break;
-                case 3: //P4_2
-                    if('W'==chr_Mod){
-                        P4_2_SetDriveMode(P4_2_DM_STRONG);  //强驱动用于输出
-                        P4_2_Write(pinLeve);
-                    }else{
-                        P4_2_SetDriveMode(P4_2_DM_DIG_HIZ); //高阻态，用于输入模式
-                        pinLeve=P4_2_Read();
-                    }
-                    memcpy(str_pinName,"P4_2",strlen("P4_2"));
                     ret = LWAN_SUCCESS;
                     break;
                 default:
