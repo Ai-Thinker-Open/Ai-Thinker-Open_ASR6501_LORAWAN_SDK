@@ -4,6 +4,7 @@
 
 #ifndef LINKWAN_AT_H
 #define LINKWAN_AT_H
+#include "stdint.h"
 
 #define AT_CMD "AT"
 
@@ -77,6 +78,9 @@
 #define LORA_AT_CTX     "+CTX"
 #define LORA_AT_CTXCW   "+CTXCW"
 #define LORA_AT_CSTDBY  "+CSTDBY"
+
+//自定义的指令
+#define LORA_AT_GPIOCTOL  "+GPIOCTOL"   //GPIO控制指令
 
 void linkwan_at_init(void);
 void linkwan_at_process(void);

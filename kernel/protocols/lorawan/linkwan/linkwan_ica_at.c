@@ -87,6 +87,9 @@ static int at_ctx_func(int opt, int argc, char *argv[]);
 static int at_cstdby_func(int opt, int argc, char *argv[]);
 #endif
 
+//自定义指令
+static int at_gpiocontrol_func(int opt, int argc, char *argv[]);
+
 static at_cmd_t g_at_table[] = {
     {LORA_AT_CJOINMODE, at_cjoinmode_func},
     {LORA_AT_CDEVEUI,  at_cdeveui_func},
@@ -139,7 +142,9 @@ static at_cmd_t g_at_table[] = {
     {LORA_AT_CRX,  at_crx_func},
     {LORA_AT_CTX,  at_ctx_func},
     {LORA_AT_CSTDBY,  at_cstdby_func},
-#endif    
+#endif
+    //自定义指令
+    {LORA_AT_GPIOCTOL,  at_gpiocontrol_func},  //GPIO控制指令
 };
 
 #define AT_TABLE_SIZE	(sizeof(g_at_table) / sizeof(at_cmd_t))
@@ -1792,6 +1797,84 @@ static int at_cstdby_func(int opt, int argc, char *argv[])
     return ret;
 }
 #endif
+
+//自定义指令
+
+//GPIO控制指令
+static int at_gpiocontrol_func(int opt, int argc, char *argv[]){
+    int ret = LWAN_ERROR;
+    uint8_t pinIndex,pinLeve=0;
+    char str_pinName[6]={0},chr_Mod;
+
+    switch(opt) {
+        case EXECUTE_CMD:   //无参数执行
+            break;
+        case QUERY_CMD: //查询(AT?)
+            break;
+        case DESC_CMD:  //使用说明(AT=?)
+            ret = LWAN_SUCCESS;
+            snprintf((char *)atcmd, ATCMD_SIZE, "AT+%s=[R/W][PIN]<,LEVE>\r\n  PIN:1:P2_3 2:P4_1 3:P4_2\r\n  LEVE:0/1\r\neg:\r\n  AT%s=W,1,1OK\r\n  AT%s=R,1\r\nOK\r\n", LORA_AT_GPIOCTOL,LORA_AT_GPIOCTOL,LORA_AT_GPIOCTOL);
+            break;
+        case SET_CMD:   //设置
+            if(argc < 2){
+                break;
+            }
+            
+            pinIndex = strtol((const char *)argv[1], NULL, 0);
+            
+            chr_Mod=argv[0][0];
+            if('W'==chr_Mod){
+                if(argc < 3){
+                    break;
+                }
+                pinLeve = strtol((const char *)argv[2], NULL, 0);
+            }
+
+            switch(pinIndex){
+                case 1: //P2_3
+                    if('W'==chr_Mod){
+                        P2_3_SetDriveMode(P2_3_DM_STRONG);  //强驱动用于输出
+                        P2_3_Write(pinLeve);
+                    }else{
+                        P2_3_SetDriveMode(P2_3_DM_DIG_HIZ); //高阻态，用于输入模式
+                        pinLeve=P2_3_Read();
+                    }
+                    memcpy(str_pinName,"P2_3",strlen("P2_3"));
+                    ret = LWAN_SUCCESS;
+                    break;
+                case 2: //P4_1
+                    if('W'==chr_Mod){
+                        P4_1_SetDriveMode(P4_1_DM_STRONG);  //强驱动用于输出
+                        P4_1_Write(pinLeve);
+                    }else{
+                        P4_1_SetDriveMode(P4_1_DM_DIG_HIZ); //高阻态，用于输入模式
+                        pinLeve=P4_1_Read();
+                    }
+                    memcpy(str_pinName,"P4_1",strlen("P4_1"));
+                    ret = LWAN_SUCCESS;
+                    break;
+                case 3: //P4_2
+                    if('W'==chr_Mod){
+                        P4_2_SetDriveMode(P4_2_DM_STRONG);  //强驱动用于输出
+                        P4_2_Write(pinLeve);
+                    }else{
+                        P4_2_SetDriveMode(P4_2_DM_DIG_HIZ); //高阻态，用于输入模式
+                        pinLeve=P4_2_Read();
+                    }
+                    memcpy(str_pinName,"P4_2",strlen("P4_2"));
+                    ret = LWAN_SUCCESS;
+                    break;
+                default:
+                    break;
+            }
+            snprintf((char *)atcmd, ATCMD_SIZE, "%s:%c %s lev:%d\r\nOK\r\n", LORA_AT_GPIOCTOL,chr_Mod,str_pinName,pinLeve);
+            break;
+        default:
+            break;
+    }
+
+    return ret;
+}
 
 void linkwan_at_process(void)
 {
