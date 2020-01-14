@@ -1804,7 +1804,7 @@ static int at_cstdby_func(int opt, int argc, char *argv[])
 static int at_gpiocontrol_func(int opt, int argc, char *argv[]){
     int ret = LWAN_ERROR;
     uint8_t pinIndex,pinLeve=0;
-    char str_pinName[6]={0},chr_Mod;
+    char str_pinName[10]={0},chr_Mod;
 
     switch(opt) {
         case EXECUTE_CMD:   //无参数执行
@@ -1831,7 +1831,40 @@ static int at_gpiocontrol_func(int opt, int argc, char *argv[]){
             }
 
             switch(pinIndex){
-                case 1: //P0_0
+                case 2: //P2_3(ADC)
+                    if('W'==chr_Mod){
+                        P2_3_SetDriveMode(P2_3_DM_STRONG);  //强驱动用于输出
+                        P2_3_Write(pinLeve);
+                    }else{
+                        P2_3_SetDriveMode(P2_3_DM_DIG_HIZ); //高阻态，用于输入模式
+                        pinLeve=P2_3_Read();
+                    }
+                    memcpy(str_pinName,"P2_3(ADC)",strlen("P2_3(ADC)"));
+                    ret = LWAN_SUCCESS;
+                    break;
+                case 3: //P6_2(AUX)
+                    if('W'==chr_Mod){
+                        P6_2_SetDriveMode(P6_2_DM_STRONG);  //强驱动用于输出
+                        P6_2_Write(pinLeve);
+                    }else{
+                        P6_2_SetDriveMode(P6_2_DM_DIG_HIZ); //高阻态，用于输入模式
+                        pinLeve=P6_2_Read();
+                    }
+                    memcpy(str_pinName,"P6_2(AUX)",strlen("P6_2(AUX)"));
+                    ret = LWAN_SUCCESS;
+                    break;
+                case 4: //P6_4(SETA)
+                    if('W'==chr_Mod){
+                        P6_4_SetDriveMode(P6_4_DM_STRONG);  //强驱动用于输出
+                        P6_4_Write(pinLeve);
+                    }else{
+                        P6_4_SetDriveMode(P6_4_DM_DIG_HIZ); //高阻态，用于输入模式
+                        pinLeve=P6_4_Read();
+                    }
+                    memcpy(str_pinName,"P6_4(SETA)",strlen("P6_4(SETA)"));
+                    ret = LWAN_SUCCESS;
+                    break;
+                case 12: //P0_0
                     if('W'==chr_Mod){
                         P0_0_SetDriveMode(P0_0_DM_STRONG);  //强驱动用于输出
                         P0_0_Write(pinLeve);
@@ -1842,7 +1875,7 @@ static int at_gpiocontrol_func(int opt, int argc, char *argv[]){
                     memcpy(str_pinName,"P0_0",strlen("P0_0"));
                     ret = LWAN_SUCCESS;
                     break;
-                case 2: //P0_1
+                case 13: //P0_1
                     if('W'==chr_Mod){
                         P0_1_SetDriveMode(P0_1_DM_STRONG);  //强驱动用于输出
                         P0_1_Write(pinLeve);
@@ -1853,15 +1886,26 @@ static int at_gpiocontrol_func(int opt, int argc, char *argv[]){
                     memcpy(str_pinName,"P0_1",strlen("P0_1"));
                     ret = LWAN_SUCCESS;
                     break;
-                case 3: //P2_3
+                case 14: //P0_6
                     if('W'==chr_Mod){
-                        P2_3_SetDriveMode(P2_3_DM_STRONG);  //强驱动用于输出
-                        P2_3_Write(pinLeve);
+                        P0_6_SetDriveMode(P0_6_DM_STRONG);  //强驱动用于输出
+                        P0_6_Write(pinLeve);
                     }else{
-                        P2_3_SetDriveMode(P2_3_DM_DIG_HIZ); //高阻态，用于输入模式
-                        pinLeve=P2_3_Read();
+                        P0_6_SetDriveMode(P0_6_DM_DIG_HIZ); //高阻态，用于输入模式
+                        pinLeve=P0_6_Read();
                     }
-                    memcpy(str_pinName,"P2_3",strlen("P2_3"));
+                    memcpy(str_pinName,"P0_6",strlen("P0_6"));
+                    ret = LWAN_SUCCESS;
+                    break;
+                case 15: //P0_7
+                    if('W'==chr_Mod){
+                        P0_7_SetDriveMode(P0_7_DM_STRONG);  //强驱动用于输出
+                        P0_7_Write(pinLeve);
+                    }else{
+                        P0_7_SetDriveMode(P0_7_DM_DIG_HIZ); //高阻态，用于输入模式
+                        pinLeve=P0_7_Read();
+                    }
+                    memcpy(str_pinName,"P0_7",strlen("P0_7"));
                     ret = LWAN_SUCCESS;
                     break;
                 default:
