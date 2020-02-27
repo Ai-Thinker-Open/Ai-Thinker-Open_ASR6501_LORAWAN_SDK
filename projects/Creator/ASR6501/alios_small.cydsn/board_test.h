@@ -13,7 +13,10 @@
 #define _ASR_BOARD_TEST_H
 #include <stdbool.h>
 #include <stdio.h>
-    
+
+//自定义软件版本号
+#define SOFT_VERSION "V1.0.0"
+
 bool LoRaTestSleep(uint8_t sleep_mode);
 bool LoRaTestMcu(uint8_t mcu_mode);
 bool LoRaTestRx(uint32_t freq, uint8_t dr);

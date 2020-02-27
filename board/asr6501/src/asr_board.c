@@ -31,6 +31,9 @@
 #include "timer.h"
 #include "sx126x-board.h"
 #include "debug.h"
+#include "lorawan_port.h"
+#include "board_test.h"
+
 /*!
  * Antenna switch GPIO pins objects
  */
@@ -459,6 +462,7 @@ double rint(double x)
 void BoardInitMcu( void )
 {
     DBG_PRINTF("======init ASR board======\r\n");
+    DBG_PRINTF("SDK version:%s software version:%s(%s)\r\n",aos_mft_itf.get_mft_rev(),SOFT_VERSION,__DATE__);
     SX126xIoInit();
 }
 
