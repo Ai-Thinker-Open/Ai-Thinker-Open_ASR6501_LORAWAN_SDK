@@ -451,7 +451,7 @@
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="RegionEU868.c" persistent="..\..\..\..\kernel\protocols\lorawan\lora\mac\region\RegionEU868.c">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="RegionCN470.c" persistent="..\..\..\..\kernel\protocols\lorawan\lora\mac\region\RegionCN470.c">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="SOURCE_C;;;;" />
@@ -796,7 +796,7 @@
 <PropertyDeltas />
 </CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b>
 <CyGuid_8b8ab257-35d3-4473-b57b-36315200b38b type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtFileSerialize" version="3" xml_contents_version="1">
-<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="RegionEU868.h" persistent="..\..\..\..\kernel\protocols\lorawan\lora\mac\region\RegionEU868.h">
+<CyGuid_31768f72-0253-412b-af77-e7dba74d1330 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtItemSerialize" version="2" name="RegionCN470.h" persistent="..\..\..\..\kernel\protocols\lorawan\lora\mac\region\RegionCN470.h">
 <Hidden v="False" />
 </CyGuid_31768f72-0253-412b-af77-e7dba74d1330>
 <build_action v="HEADER;;;;" />
@@ -2421,7 +2421,7 @@
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0p@C/C++@General@Create Listing File" v="True" />
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0p@C/C++@General@Default Char Unsigned" v="False" />
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0p@C/C++@General@Generate Debugging Information" v="True" />
-<name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0p@C/C++@General@Preprocessor Definitions" v="CY_CORE_ID=0; CONFIG_NO_TCPIP; SYSINFO_KERNEL_VERSION=&quot;AOS-R-1.3.0&quot;; HAVE_NOT_ADVANCED_FORMATE; SYSINFO_DEVICE_NAME=&quot;ASR6501&quot;; CONFIG_AOS_KV_MULTIPTN_MODE; CONFIG_AOS_KV_PTN=6; CONFIG_AOS_KV_SECOND_PTN=7; CONFIG_AOS_KV_PTN_SIZE=4096; CONFIG_AOS_KV_BUFFER_SIZE=8192; CONFIG_AOS_CLI; VCALL_RHINO; CONFIG_LINKLORA; REGION_EU868; CONFIG_LINKWAN; CONFIG_DEBUG_LINKWAN; CONFIG_ASR6501; AOS_KV; CONFIG_LINKWAN_AT; CONFIG_LORA_VERIFY; LOW_POWER_DISABLE; CONFIG_LWAN; CONFIG_MANUFACTURER=&quot;ASR&quot;; CONFIG_DEVICE_MODEL=&quot;6501&quot;; CONFIG_VERSION=&quot;v4.3&quot;" />
+<name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0p@C/C++@General@Preprocessor Definitions" v="CY_CORE_ID=0; CONFIG_NO_TCPIP; SYSINFO_KERNEL_VERSION=&quot;AOS-R-1.3.0&quot;; HAVE_NOT_ADVANCED_FORMATE; SYSINFO_DEVICE_NAME=&quot;ASR6501&quot;; CONFIG_AOS_KV_MULTIPTN_MODE; CONFIG_AOS_KV_PTN=6; CONFIG_AOS_KV_SECOND_PTN=7; CONFIG_AOS_KV_PTN_SIZE=4096; CONFIG_AOS_KV_BUFFER_SIZE=8192; CONFIG_AOS_CLI; VCALL_RHINO; CONFIG_LINKLORA; REGION_CN470; CONFIG_DEBUG_LINKWAN; CONFIG_ASR6501; AOS_KV; CONFIG_LINKWAN_AT; CONFIG_LORA_VERIFY; LOW_POWER_DISABLE; CONFIG_LWAN; CONFIG_MANUFACTURER=&quot;ASR&quot;; CONFIG_DEVICE_MODEL=&quot;6501&quot;; CONFIG_VERSION=&quot;v4.3&quot;" />
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0p@C/C++@General@Pedantic Compilation" v="False" />
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0p@C/C++@General@Warning Level" v="High" />
 <name_val_pair name="c9323d49-d323-40b8-9b59-cc008d68a989@Debug@CortexM0p@C/C++@General@Warnings as Errors" v="False" />
