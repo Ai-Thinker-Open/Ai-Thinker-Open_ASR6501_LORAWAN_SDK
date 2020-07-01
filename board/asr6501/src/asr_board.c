@@ -462,7 +462,7 @@ double rint(double x)
 void BoardInitMcu( void )
 {
     DBG_PRINTF("======init ASR board======\r\n");
-    DBG_PRINTF("SDK version:%s software version:%s(%s)\r\n",aos_mft_itf.get_mft_rev(),SOFT_VERSION,__DATE__);
+    DBG_PRINTF("LoRaWAN for CN470 SDK version:%s software version:%s(%s)\r\n",aos_mft_itf.get_mft_rev(),SOFT_VERSION,__DATE__);
     SX126xIoInit();
 }
 
