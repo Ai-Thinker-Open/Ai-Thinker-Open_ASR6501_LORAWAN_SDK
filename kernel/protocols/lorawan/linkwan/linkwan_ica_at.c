@@ -1473,7 +1473,7 @@ static int at_cgmr_func(int opt, int argc, char *argv[])
     
     if(opt == QUERY_CMD) {
         ret = LWAN_SUCCESS;
-        snprintf((char *)atcmd, ATCMD_SIZE, "\r\n%s=%s softversion=%s\r\nOK\r\n", LORA_AT_CGMR, aos_mft_itf.get_mft_rev(),SOFT_VERSION);
+        snprintf((char *)atcmd, ATCMD_SIZE, "\r\n%s=%s softversion=%s for %s\r\nOK\r\n", LORA_AT_CGMR, aos_mft_itf.get_mft_rev(),SOFT_VERSION,PROTOCOL_TYPE);
     }
 
     return ret;
