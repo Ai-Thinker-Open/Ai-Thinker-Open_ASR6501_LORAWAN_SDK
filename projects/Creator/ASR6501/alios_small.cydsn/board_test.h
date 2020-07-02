@@ -16,6 +16,7 @@
 
 //自定义软件版本号
 #define SOFT_VERSION "V1.0.0"
+#define PROTOCOL_TYPE "LoRaWAN-CN470"
 
 bool LoRaTestSleep(uint8_t sleep_mode);
 bool LoRaTestMcu(uint8_t mcu_mode);
